@@ -1,9 +1,9 @@
-json{
+{
   "name": "Le Grémillon",
   "phone": "03 83 29 53 57",
+  "email": "contact@restaurant-gremillon.fr",
   "address": "102 avenue Carnot, 54130 Saint-Max",
-  "hours": "Mer-Sam : 12h-14h / 19h30-21h30 • Mar & Dim : 12h-14h",
-  "google_rating": "4,7",
+  "hours_band": "Mer-Sam : 12h-14h / 19h30-21h30 • Mar & Dim : 12h-14h",
+  "google_rating": "4.7",
   "google_reviews": "450+"
 }
-```
