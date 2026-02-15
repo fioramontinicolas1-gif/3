@@ -2,17 +2,17 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: images
-public_folder: /images
+media_folder: images/uploads
+public_folder: /images/uploads
 
 locale: fr
 
 collections:
   - name: settings
-    label: Paramètres du Site
+    label: Paramètres Généraux
     files:
       - name: general
-        label: Informations Générales
+        label: Informations du Restaurant
         file: content/settings.json
         fields:
           - label: Nom du Restaurant
@@ -23,19 +23,203 @@ collections:
             name: phone
             widget: string
             default: 03 83 29 53 57
-          - label: Adresse
+          - label: Email
+            name: email
+            widget: string
+            default: contact@restaurant-gremillon.fr
+          - label: Adresse Complète
             name: address
             widget: text
             default: 102 avenue Carnot, 54130 Saint-Max
-          - label: Horaires
-            name: hours
+          - label: Horaires (bande du haut)
+            name: hours_band
             widget: text
-            default: Mer-Sam 12h-14h 19h30-21h30 Mar et Dim 12h-14h
+            default: Mer-Sam 12h-14h / 19h30-21h30 - Mar et Dim 12h-14h
           - label: Score Google
             name: google_rating
             widget: string
             default: 4.7
-          - label: Nombre avis Google
+          - label: Nombre d avis Google
             name: google_reviews
             widget: string
             default: 450+
+
+      - name: hours
+        label: Horaires Détaillés (Contact)
+        file: content/hours.json
+        fields:
+          - label: Lundi
+            name: monday
+            widget: string
+            default: Fermé
+          - label: Mardi
+            name: tuesday
+            widget: string
+            default: 12h00 - 14h00 (fermé le soir)
+          - label: Mercredi
+            name: wednesday
+            widget: string
+            default: 12h00 - 14h00 / 19h30 - 21h30
+          - label: Jeudi
+            name: thursday
+            widget: string
+            default: 12h00 - 14h00 / 19h30 - 21h30
+          - label: Vendredi
+            name: friday
+            widget: string
+            default: 12h00 - 14h00 / 19h30 - 21h30
+          - label: Samedi
+            name: saturday
+            widget: string
+            default: 12h00 - 14h00 / 19h30 - 21h30
+          - label: Dimanche
+            name: sunday
+            widget: string
+            default: 12h00 - 14h00
+
+  - name: menu_entrees
+    label: Menu - Entrées
+    folder: content/menu/entrees
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: Nom de l entrée
+        name: title
+        widget: string
+      - label: Prix (€)
+        name: price
+        widget: number
+        value_type: float
+        step: 0.5
+      - label: Ordre d affichage
+        name: order
+        widget: number
+        default: 1
+        hint: Plus petit = en haut de la liste
+
+  - name: menu_plats
+    label: Menu - Plats
+    folder: content/menu/plats
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: Nom du plat
+        name: title
+        widget: string
+      - label: Prix (€)
+        name: price
+        widget: number
+        value_type: float
+        step: 0.5
+      - label: Ordre d affichage
+        name: order
+        widget: number
+        default: 1
+        hint: Plus petit = en haut de la liste
+
+  - name: menu_tradition
+    label: Menu Tradition (24.50€)
+    files:
+      - name: menu_tradition
+        label: Menu Tradition
+        file: content/menus/tradition.json
+        fields:
+          - label: Prix du menu
+            name: price
+            widget: number
+            value_type: float
+            default: 24.5
+          - label: Entrées au choix
+            name: entrees
+            widget: list
+            fields:
+              - label: Nom de l entrée
+                name: name
+                widget: string
+          - label: Plats au choix
+            name: plats
+            widget: list
+            fields:
+              - label: Nom du plat
+                name: name
+                widget: string
+          - label: Desserts au choix
+            name: desserts
+            widget: list
+            fields:
+              - label: Nom du dessert
+                name: name
+                widget: string
+
+  - name: menu_gastronomique
+    label: Menu Gastronomique (34€)
+    files:
+      - name: menu_gastronomique
+        label: Menu Gastronomique
+        file: content/menus/gastronomique.json
+        fields:
+          - label: Prix du menu
+            name: price
+            widget: number
+            value_type: float
+            default: 34
+          - label: Entrées au choix
+            name: entrees
+            widget: list
+            fields:
+              - label: Nom de l entrée
+                name: name
+                widget: string
+          - label: Plats au choix
+            name: plats
+            widget: list
+            fields:
+              - label: Nom du plat
+                name: name
+                widget: string
+          - label: Desserts au choix
+            name: desserts
+            widget: list
+            fields:
+              - label: Nom du dessert
+                name: name
+                widget: string
+
+  - name: gallery
+    label: Galerie Photos
+    folder: content/gallery
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: Photo
+        name: image
+        widget: image
+      - label: Description (pour référencement)
+        name: alt
+        widget: string
+        hint: Décrivez brièvement la photo
+      - label: Ordre d affichage
+        name: order
+        widget: number
+        default: 1
+        hint: Plus petit = en premier
+
+  - name: content
+    label: Contenu du Site
+    files:
+      - name: about
+        label: Section Notre Histoire
+        file: content/about.json
+        fields:
+          - label: Paragraphe 1
+            name: paragraph1
+            widget: text
+            default: Depuis plus de huit ans, le Restaurant Le Grémillon vous accueille chaleureusement à Saint-Max en Meurthe-et-Moselle.
+          - label: Paragraphe 2
+            name: paragraph2
+            widget: text
+            default: Nous vous invitons à venir déguster nos plats onctueux mijotés par notre chef cuisinier.
+          - label: Paragraphe 3
+            name: paragraph3
+            widget: text
+            default: Nous vous recevons dans une ambiance simple et agréable pour un repas entre amis ou en famille.
