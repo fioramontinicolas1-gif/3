@@ -21,4 +21,3 @@ collections:
           - {label: "Horaires", name: "hours", widget: "text", default: "Mer-Sam : 12h-14h / 19h30-21h30 • Mar & Dim : 12h-14h"}
           - {label: "Score Google", name: "google_rating", widget: "string", default: "4,7"}
           - {label: "Nombre d'avis", name: "google_reviews", widget: "string", default: "450+"}
-```
