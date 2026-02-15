@@ -1,0 +1,40 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+locale: 'fr'
+
+collections:
+  - name: "settings"
+    label: "Paramètres du Site"
+    files:
+      - name: "general"
+        label: "Informations Générales"
+        file: "content/settings.json"
+        fields:
+          - {label: "Nom du Restaurant", name: "name", widget: "string", default: "Le Grémillon"}
+          - {label: "Téléphone", name: "phone", widget: "string", default: "03 83 29 53 57"}
+          - {label: "Adresse", name: "address", widget: "string", default: "102 avenue Carnot, 54130 Saint-Max"}
+          - {label: "Horaires", name: "hours", widget: "text", default: "Mer-Sam : 12h-14h / 19h30-21h30 • Mar & Dim : 12h-14h"}
+          - {label: "Score Google", name: "google_rating", widget: "string", default: "4,7"}
+          - {label: "Nombre d'avis", name: "google_reviews", widget: "string", default: "450+"}
+```
+
+4. **En bas de la page** :
+   - Tapez : `Créer fichier config.yml`
+   - **Cliquez** : `Commit new file`
+
+✅ **FICHIER 1 CRÉÉ !**
+
+---
+
+### **Étape 3 : Créer le fichier `index.html` dans le dossier `admin`**
+
+1. **Sur la page de votre repo, cliquez** : `Add file` → `Create new file`
+
+2. **Dans le nom, tapez** :
+```
+   admin/index.html
