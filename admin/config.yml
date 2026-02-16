@@ -1,0 +1,110 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: images/uploads
+public_folder: /images/uploads
+
+locale: fr
+
+collections:
+  - name: parametres
+    label: Paramètres du Restaurant
+    files:
+      - name: settings
+        label: Informations Générales
+        file: content/settings.json
+        fields:
+          - label: Nom du Restaurant
+            name: nom_restaurant
+            widget: string
+          - label: Téléphone
+            name: telephone
+            widget: string
+          - label: Email
+            name: email
+            widget: string
+          - label: Adresse
+            name: adresse
+            widget: text
+          - label: Horaires (bande du haut)
+            name: horaires_bande
+            widget: string
+            hint: Exemple - Mer-Sam 12h-14h / 19h30-21h30 - Mar et Dim 12h-14h
+          - label: Score Google
+            name: score_google
+            widget: string
+            hint: Exemple - 4,7
+          - label: Nombre d avis Google
+            name: avis_google
+            widget: string
+            hint: Exemple - 450+
+          - label: Horaires Détaillés
+            name: horaires_detailles
+            widget: object
+            fields:
+              - {label: Lundi, name: lundi, widget: string}
+              - {label: Mardi, name: mardi, widget: string}
+              - {label: Mercredi, name: mercredi, widget: string}
+              - {label: Jeudi, name: jeudi, widget: string}
+              - {label: Vendredi, name: vendredi, widget: string}
+              - {label: Samedi, name: samedi, widget: string}
+              - {label: Dimanche, name: dimanche, widget: string}
+          - label: Notre Histoire - Paragraphe 1
+            name: texte_histoire_1
+            widget: text
+          - label: Notre Histoire - Paragraphe 2
+            name: texte_histoire_2
+            widget: text
+          - label: Notre Histoire - Paragraphe 3
+            name: texte_histoire_3
+            widget: text
+
+  - name: carte
+    label: La Carte Complète
+    files:
+      - name: menu
+        label: Menu du Restaurant
+        file: content/menu-data.json
+        fields:
+          - label: Entrées
+            name: entrees
+            widget: list
+            fields:
+              - {label: Nom de l entrée, name: nom, widget: string}
+              - {label: Prix, name: prix, widget: string, hint: Format 14,50}
+          
+          - label: Plats
+            name: plats
+            widget: list
+            fields:
+              - {label: Nom du plat, name: nom, widget: string}
+              - {label: Prix, name: prix, widget: string, hint: Format 21,00}
+          
+          - label: Menu Tradition
+            name: menu_tradition
+            widget: object
+            fields:
+              - {label: Prix du menu, name: prix, widget: string, hint: Format 24,50}
+              - {label: Entrées au choix, name: entrees, widget: text, hint: Séparez par des points}
+              - {label: Plats au choix, name: plats, widget: text, hint: Séparez par des points}
+              - {label: Desserts au choix, name: desserts, widget: text, hint: Séparez par des points}
+          
+          - label: Menu Gastronomique
+            name: menu_gastronomique
+            widget: object
+            fields:
+              - {label: Prix du menu, name: prix, widget: string, hint: Format 34,00}
+              - {label: Entrées au choix, name: entrees, widget: text, hint: Séparez par des points}
+              - {label: Plats au choix, name: plats, widget: text, hint: Séparez par des points}
+              - {label: Desserts au choix, name: desserts, widget: text, hint: Séparez par des points}
+
+  - name: photos
+    label: Photos
+    folder: content/gallery
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: Photo, name: image, widget: image}
+      - {label: Description, name: alt, widget: string}
+      - {label: Ordre, name: order, widget: number, default: 1}
